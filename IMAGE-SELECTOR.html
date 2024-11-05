@@ -1,0 +1,70 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>360 Photo with A-Frame</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      #imageSelector {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+      }
+      a-scene {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="imageSelector">
+      <select id="imageDropdown" onchange="loadImage()">
+        <option value="Cocina.jpg">Kitchen View</option>
+        <option value="Comedor.jpg">Dining Room View</option>
+        <option value="Family.jpg">Family Room Lights Off</option>
+        <option value="Family2.jpg">Family Room Lights On</option>
+        <option value="Sala1.jpg">Living Room Niche</option>
+        <option value="Sala2.jpg">Main Living Room</option>
+        <option value="Terraza.jpg">Outdoor Terrace View</option>
+      </select>
+    </div>
+    <a-scene>
+      <a-camera
+        position="0 1.6 0"
+        fov="90"
+        look-controls="reverseMouseDrag: true; touchEnabled: true;"
+      ></a-camera>
+      <a-sky id="skybox" src="" rotation="0 40 0"></a-sky>
+    </a-scene>
+
+    <script>
+      function loadImage() {
+        var dropdown = document.getElementById("imageDropdown");
+        var selectedImage = dropdown.value;
+        var sky = document.getElementById("skybox");
+        sky.setAttribute(
+          "src",
+          "https://jrbdesignstudio.github.io/VEGA-ALTA-KITCHEN-REMODEL/" +
+            selectedImage
+        );
+      }
+
+      // Load the default image on page load
+      window.onload = function () {
+        loadImage();
+      };
+    </script>
+  </body>
+</html>
